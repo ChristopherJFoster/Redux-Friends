@@ -10,40 +10,60 @@ let nextId = 6;
 
 let friends = [
   {
-    id: 1,
-    name: 'Ben',
-    age: 30,
-    email: 'ben@lambdaschool.com'
+    id: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
+    name: 'Stream',
+    age: 27,
+    email: 'stream@gmail.com',
+    faveColor: 'aqua',
+    faveFood: 'gravity',
+    quotation: 'Islands in the _me_...'
   },
   {
-    id: 2,
-    name: 'Austen',
-    age: 45,
-    email: 'austen@lambdaschool.com'
+    id: '37b81aec-6af0-426d-9d4c-9fa5cc1e0d8c',
+    name: 'Book',
+    age: 23,
+    email: 'book@gmail.com',
+    faveColor: 'parchment',
+    faveFood: 'thoughts',
+    quotation: 'You may judge me by my cover.'
   },
   {
-    id: 3,
-    name: 'Ryan',
-    age: 15,
-    email: 'ryan@lambdaschool.com'
+    id: '39a853e0-e241-4b60-89e1-7b3dc702590f',
+    name: 'Carbon',
+    age: 68,
+    email: 'carbon@gmail.com',
+    faveColor: 'dark grey',
+    faveFood: 'everything',
+    quotation:
+      'No one ever heard of carbon poisoning. Not _just_ carbon anyway...'
   },
   {
-    id: 4,
-    name: 'Dustin',
-    age: 25,
-    email: 'D-munny@lambdaschool.com'
+    id: '67e29dfe-959e-491c-ac6d-6ead940c9e4f',
+    name: 'Diligence',
+    age: 39,
+    email: 'diligence@gmail.com',
+    faveColor: 'navy',
+    faveFood: 'perseverence',
+    quotation:
+      'Genius is 1% inspiration and 99% me. Think about that for a minute. Now get back to work.'
   },
   {
-    id: 5,
-    name: 'Sean',
-    age: 35,
-    email: 'sean@lambdaschool.com'
+    id: '2677f21f-b371-4a1c-8c40-c614c0eb36a5',
+    name: 'Estuary',
+    age: 47,
+    email: 'estuary@gmail.com',
+    faveColor: 'tan',
+    faveFood: 'silt',
+    quotation: 'Grahhbbllllhleh...'
   },
   {
-    id: 6,
-    name: 'Michelle',
-    age: 67,
-    email: 'michelle@gmail.com'
+    id: 'c3bf9686-9023-4496-b72a-53d13b837c98',
+    name: 'Thursday',
+    age: 22,
+    email: 'thursday@gmail.com',
+    faveColor: 'cinnamon',
+    faveFood: 'afternoons',
+    quotation: 'Sigh.'
   }
 ];
 
