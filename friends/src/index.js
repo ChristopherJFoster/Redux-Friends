@@ -17,8 +17,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, logger))
 );
 
-// const store = createStore(rootReducer, applyMiddleware(thunk, logger));
-
 ReactDOM.render(
   <Provider store={store}>
     <Router>

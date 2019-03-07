@@ -16,15 +16,6 @@ const Login = ({ history, login }) => {
     });
   };
 
-  // login = e => {
-  //   e.preventDefault();
-  //   props.login(this.state.credentials)
-  //     .then((() => {
-  //       // only fires if login call is successful
-  //       this.props.history.push('/');
-  //     })
-  // }
-
   return (
     <form onSubmit={attemptLogin}>
       <input
