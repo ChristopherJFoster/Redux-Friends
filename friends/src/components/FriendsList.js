@@ -3,13 +3,7 @@ import Friend from './Friend';
 
 import { connect } from 'react-redux';
 
-const FriendsList = ({
-  friends,
-  addFriend,
-  editFriend,
-  deleteFriend,
-  history
-}) => {
+const FriendsList = ({ friends, addFriend, editFriend, deleteFriend }) => {
   return (
     <div className='friendslist'>
       <div className='friendslist-header'>
@@ -23,7 +17,6 @@ const FriendsList = ({
             friend={friend}
             editFriend={editFriend}
             deleteFriend={deleteFriend}
-            history={history}
           />
         ))}
       </div>

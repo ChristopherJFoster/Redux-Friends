@@ -2,14 +2,11 @@ import // UPPERCASE ACTIONS HERE
 '../actions/actions';
 
 const initialState = {
+  loggingIn: false,
   fetchingFriends: false,
-  friendsFetched: false,
-  savingFriends: false,
-  friendsSaved: false,
+  addingFriend: false,
   updatingFriend: false,
-  friendUpdated: false,
   deletingFriend: false,
-  friendDeleted: false,
   friends: [
     {
       id: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
