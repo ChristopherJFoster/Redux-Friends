@@ -1,5 +1,5 @@
 import React from 'react';
-import { useInput } from '../hooks/useInput';
+import { useInput } from '../utilities/useInput';
 import { connect } from 'react-redux';
 import { login } from '../actions/actions';
 

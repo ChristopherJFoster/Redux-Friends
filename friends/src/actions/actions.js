@@ -9,17 +9,9 @@ export const login = creds => dispatch => {
   return axios
     .post('http://localhost:5000/api/login', creds)
     .then(res => {
-      localStorage.setItem('reduxFriendsToken', res.data.payload);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE, payload: err.response.message });
     });
 };
-
-// export const addTokenToLocalStorage = store => next => action => {
-//   if (action.type === LOGIN_SUCCESS) {
-//     localStorage.setItem('userToken', action.payload.token);
-//   }
-//   next(action);
-// };
