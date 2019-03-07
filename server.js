@@ -83,6 +83,7 @@ function authenticator(req, res, next) {
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   if (username === 'Lambda School' && password === 'i<3Lambd4') {
+    // What does req.loggedIn do? It's not part of the payload, so it doesn't seem to be passed back to the main app, and it loggedIn doesn't seem to be referenced here in the server either...
     req.loggedIn = true;
     res.status(200).json({
       payload: token

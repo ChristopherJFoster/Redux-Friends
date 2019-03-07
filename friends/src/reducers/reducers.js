@@ -1,5 +1,8 @@
-import // UPPERCASE ACTIONS HERE
-'../actions/actions';
+import {
+  LOGIN_ATTEMPT,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from '../actions/actions';
 
 const initialState = {
   loggingIn: false,
@@ -30,8 +33,14 @@ const initialState = {
   error: null
 };
 
-export const rootReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
+    case LOGIN_ATTEMPT:
+      return { ...state, loggingIn: true, error: null };
+    case LOGIN_SUCCESS:
+      return { ...state, loggingIn: false, error: null };
+    case LOGIN_FAILURE:
+      return { ...state, fetching: false, error: action.payload };
     default:
       return state;
   }
