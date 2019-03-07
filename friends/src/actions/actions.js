@@ -10,15 +10,20 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 //   console.log('action!');
 // };
 
-export const login = (username, password) => dispatch => {
+export const login = creds => dispatch => {
   dispatch({ type: LOGIN_ATTEMPT });
-  axios
-    .post('http://localhost:5000/api/login', {
-      username,
-      password
-    })
-    .then(res => dispatch({ type: LOGIN_SUCCESS, payload: res.results }))
-    .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err }));
+  return (
+    axios
+      .post('http://localhost:5000/api/login', creds)
+      //   .post('/api/login', creds)
+      .then(res => {
+        localStorage.setItem('reduxFriendsToken', res.data.payload);
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        dispatch({ type: LOGIN_FAILURE, payload: err.response.message });
+      })
+  );
 };
 
 // export const addTokenToLocalStorage = store => next => action => {

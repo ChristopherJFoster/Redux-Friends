@@ -3,16 +3,27 @@ import { useInput } from '../hooks/useInput';
 import { connect } from 'react-redux';
 import { login } from '../actions/actions';
 
-const Login = () => {
+const Login = ({ history, login }) => {
   const username = useInput();
   const password = useInput();
 
   const attemptLogin = e => {
     e.preventDefault();
-    login(username.value, password.value);
-    username.setValue('');
-    password.setValue('');
+    login({ username: username.value, password: password.value }).then(() => {
+      username.setValue('');
+      password.setValue('');
+      history.push('/');
+    });
   };
+
+  // login = e => {
+  //   e.preventDefault();
+  //   props.login(this.state.credentials)
+  //     .then((() => {
+  //       // only fires if login call is successful
+  //       this.props.history.push('/');
+  //     })
+  // }
 
   return (
     <form onSubmit={attemptLogin}>
@@ -36,11 +47,7 @@ const Login = () => {
   );
 };
 
-const mapStateToProps = state => ({
-  friends: state.friends
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   { login }
 )(Login);
