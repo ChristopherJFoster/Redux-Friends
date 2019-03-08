@@ -13,6 +13,10 @@ export const ADD_FRIEND_REQUEST = 'ADD_FRIEND_REQUEST';
 export const ADD_FRIEND_SUCCESS = 'ADD_FRIEND_SUCCESS';
 export const ADD_FRIEND_FAILURE = 'ADD_FRIEND_FAILURE';
 
+export const EDIT_FRIEND_REQUEST = 'EDIT_FRIEND_REQUEST';
+export const EDIT_FRIEND_SUCCESS = 'EDIT_FRIEND_SUCCESS';
+export const EDIT_FRIEND_FAILURE = 'EDIT_FRIEND_FAILURE';
+
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
@@ -21,7 +25,7 @@ export const login = creds => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
-      dispatch({ type: LOGIN_FAILURE, payload: err.response.message });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response.data });
     });
 };
 
@@ -33,22 +37,30 @@ export const fetchFriends = () => dispatch => {
       dispatch({ type: FETCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err.response.error);
-      dispatch({ type: FETCH_FAILURE, payload: err.response.error });
+      dispatch({ type: FETCH_FAILURE, payload: err.response.data });
     });
 };
 
 export const addFriend = friend => dispatch => {
-  console.log('test');
   dispatch({ type: ADD_FRIEND_REQUEST });
   return axiosAuth()
     .post('http://localhost:5000/api/friends', friend)
     .then(res => {
-      console.log(res.data);
       dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err.response.error);
-      dispatch({ type: ADD_FRIEND_FAILURE, payload: err.response.error });
+      dispatch({ type: ADD_FRIEND_FAILURE, payload: err.response.data });
+    });
+};
+
+export const editFriend = friend => dispatch => {
+  dispatch({ type: ADD_FRIEND_REQUEST });
+  return axiosAuth()
+    .put(`http://localhost:5000/api/friends/${friend.id}`, friend)
+    .then(res => {
+      dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: ADD_FRIEND_FAILURE, payload: err.response.data });
     });
 };

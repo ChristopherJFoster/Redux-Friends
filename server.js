@@ -1,3 +1,4 @@
+const uuid = require('uuid');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -5,8 +6,6 @@ const port = 5000;
 const app = express();
 const token =
   'eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ';
-
-let nextId = 6;
 
 let friends = [
   {
@@ -112,7 +111,7 @@ app.get('/api/friends/:id', authenticator, (req, res) => {
 });
 
 app.post('/api/friends', authenticator, (req, res) => {
-  const friend = { id: getNextId(), ...req.body };
+  const friend = { id: uuid.v4(), ...req.body };
   friends = [...friends, friend];
   res.send(friends);
 });
@@ -143,10 +142,6 @@ app.delete('/api/friends/:id', authenticator, (req, res) => {
 
   res.send(friends);
 });
-
-function getNextId() {
-  return nextId++;
-}
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);

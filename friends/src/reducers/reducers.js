@@ -7,14 +7,17 @@ import {
   FETCH_FAILURE,
   ADD_FRIEND_REQUEST,
   ADD_FRIEND_SUCCESS,
-  ADD_FRIEND_FAILURE
+  ADD_FRIEND_FAILURE,
+  EDIT_FRIEND_REQUEST,
+  EDIT_FRIEND_SUCCESS,
+  EDIT_FRIEND_FAILURE
 } from '../actions/actions';
 
 const initialState = {
   loggingIn: false,
   fetchingFriends: false,
   addingFriend: false,
-  updatingFriend: false,
+  editingFriend: false,
   deletingFriend: false,
   friends: [],
   error: null
@@ -52,6 +55,18 @@ export default (state = initialState, action) => {
       };
     case ADD_FRIEND_FAILURE:
       return { ...state, addingFriend: false, error: action.payload };
+
+    case EDIT_FRIEND_REQUEST:
+      return { ...state, editingFriend: true, error: null };
+    case EDIT_FRIEND_SUCCESS:
+      return {
+        ...state,
+        editingFriend: false,
+        friends: action.payload,
+        error: null
+      };
+    case EDIT_FRIEND_FAILURE:
+      return { ...state, editingFriend: false, error: action.payload };
 
     default:
       return state;
