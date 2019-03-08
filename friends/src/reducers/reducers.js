@@ -10,7 +10,10 @@ import {
   ADD_FRIEND_FAILURE,
   EDIT_FRIEND_REQUEST,
   EDIT_FRIEND_SUCCESS,
-  EDIT_FRIEND_FAILURE
+  EDIT_FRIEND_FAILURE,
+  DELETE_FRIEND_REQUEST,
+  DELETE_FRIEND_SUCCESS,
+  DELETE_FRIEND_FAILURE
 } from '../actions/actions';
 
 const initialState = {
@@ -67,6 +70,18 @@ export default (state = initialState, action) => {
       };
     case EDIT_FRIEND_FAILURE:
       return { ...state, editingFriend: false, error: action.payload };
+
+    case DELETE_FRIEND_REQUEST:
+      return { ...state, deletingFriend: true, error: null };
+    case DELETE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        deletingFriend: false,
+        friends: action.payload,
+        error: null
+      };
+    case DELETE_FRIEND_FAILURE:
+      return { ...state, deletingFriend: false, error: action.payload };
 
     default:
       return state;
