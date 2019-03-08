@@ -4,11 +4,13 @@ import {
   LOGIN_FAILURE,
   FETCH_REQUEST,
   FETCH_SUCCESS,
-  FETCH_FAILURE
+  FETCH_FAILURE,
+  ADD_FRIEND_REQUEST,
+  ADD_FRIEND_SUCCESS,
+  ADD_FRIEND_FAILURE
 } from '../actions/actions';
 
 const initialState = {
-  onceOnly: true,
   loggingIn: false,
   fetchingFriends: false,
   addingFriend: false,
@@ -26,6 +28,7 @@ export default (state = initialState, action) => {
       return { ...state, loggingIn: false, error: null };
     case LOGIN_FAILURE:
       return { ...state, loggingIn: false, error: action.payload };
+
     case FETCH_REQUEST:
       return { ...state, fetchingFriends: true, error: null };
     case FETCH_SUCCESS:
@@ -37,6 +40,19 @@ export default (state = initialState, action) => {
       };
     case FETCH_FAILURE:
       return { ...state, fetchingFriends: false, error: action.payload };
+
+    case ADD_FRIEND_REQUEST:
+      return { ...state, addingFriend: true, error: null };
+    case ADD_FRIEND_SUCCESS:
+      return {
+        ...state,
+        addingFriend: false,
+        friends: action.payload,
+        error: null
+      };
+    case ADD_FRIEND_FAILURE:
+      return { ...state, addingFriend: false, error: action.payload };
+
     default:
       return state;
   }

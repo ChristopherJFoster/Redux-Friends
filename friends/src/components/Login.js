@@ -1,13 +1,14 @@
 import React from 'react';
-import { useInput } from '../utilities/useInput';
 import { connect } from 'react-redux';
+
+import { useInput } from '../utilities/useInput';
 import { login } from '../actions/actions';
 
 const Login = ({ history, login }) => {
   const username = useInput();
   const password = useInput();
 
-  const attemptLogin = e => {
+  const requestLogin = e => {
     e.preventDefault();
     login({ username: username.value, password: password.value }).then(() => {
       username.setValue('');
@@ -17,7 +18,7 @@ const Login = ({ history, login }) => {
   };
 
   return (
-    <form onSubmit={attemptLogin}>
+    <form onSubmit={requestLogin}>
       <input
         required
         type='text'
