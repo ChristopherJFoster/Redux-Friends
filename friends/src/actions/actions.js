@@ -58,14 +58,14 @@ export const addFriend = friend => dispatch => {
 };
 
 export const editFriend = friend => dispatch => {
-  dispatch({ type: ADD_FRIEND_REQUEST });
+  dispatch({ type: EDIT_FRIEND_REQUEST });
   return axiosAuth()
     .put(`http://localhost:5000/api/friends/${friend.id}`, friend)
     .then(res => {
-      dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data });
+      dispatch({ type: EDIT_FRIEND_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: ADD_FRIEND_FAILURE, payload: err.response.data });
+      dispatch({ type: EDIT_FRIEND_FAILURE, payload: err.response.data });
     });
 };
 

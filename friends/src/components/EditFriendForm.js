@@ -5,19 +5,7 @@ import { Link } from 'react-router-dom';
 import { useInput } from '../utilities/useInput';
 import { fetchFriends, editFriend } from '../actions/actions';
 
-const EditFriendForm = ({
-  fetchFriends,
-  friends,
-  match,
-  history,
-  editFriend
-}) => {
-  useEffect(() => {
-    if (friends.length === 0) {
-      fetchFriends();
-    }
-  }, []);
-
+const EditFriendForm = ({ fetchFriends, friend, history, editFriend }) => {
   const name = useInput('');
   const age = useInput('');
   const email = useInput('');
@@ -25,11 +13,14 @@ const EditFriendForm = ({
   const faveFood = useInput('');
   const quotation = useInput('');
 
-  // Here I use a Hook to set all the form values equal to property values of the friend that the user chose to edit:
   useEffect(() => {
-    // This conditional is here to deal with a user reloading the /editfriendform url. Without this conditional (and the conditional Redirect below), a reload on this page causes errors. I'm sure there's a better way to do this, but at least this works for now...
-    if (friends.length !== 0) {
-      let friend = friends.filter(friend => friend.id === match.params.id)[0];
+    if (!friend) {
+      fetchFriends();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (friend) {
       name.setValue(friend.name);
       age.setValue(friend.age);
       email.setValue(friend.email);
@@ -37,12 +28,12 @@ const EditFriendForm = ({
       faveFood.setValue(friend.faveFood);
       quotation.setValue(friend.quotation);
     }
-  }, [friends]);
+  }, [friend]);
 
   const requestEditFriend = e => {
     e.preventDefault();
     editFriend({
-      id: match.params.id,
+      id: friend.id,
       name: name.value,
       age: age.value,
       email: email.value,
@@ -50,12 +41,6 @@ const EditFriendForm = ({
       faveFood: faveFood.value,
       quotation: quotation.value
     }).then(() => {
-      name.setValue('');
-      age.setValue('');
-      email.setValue('');
-      faveColor.setValue('');
-      faveFood.setValue('');
-      quotation.setValue('');
       history.push('/');
     });
   };
@@ -113,9 +98,13 @@ const EditFriendForm = ({
   );
 };
 
-const mapStateToProps = state => ({
-  friends: state.friends
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    friend: state.friends.filter(
+      friend => friend.id === ownProps.match.params.id
+    )[0]
+  };
+};
 
 export default connect(
   mapStateToProps,
