@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { deleteFriend } from '../actions/actions';
 
 export const Friend = ({ friend, deleteFriend }) => {
   return (
@@ -24,4 +27,7 @@ export const Friend = ({ friend, deleteFriend }) => {
   );
 };
 
-export default Friend;
+export default connect(
+  null,
+  { deleteFriend }
+)(Friend);

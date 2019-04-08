@@ -17,6 +17,10 @@ export const EDIT_FRIEND_REQUEST = 'EDIT_FRIEND_REQUEST';
 export const EDIT_FRIEND_SUCCESS = 'EDIT_FRIEND_SUCCESS';
 export const EDIT_FRIEND_FAILURE = 'EDIT_FRIEND_FAILURE';
 
+export const DELETE_FRIEND_REQUEST = 'DELETE_FRIEND_REQUEST';
+export const DELETE_FRIEND_SUCCESS = 'DELETE_FRIEND_SUCCESS';
+export const DELETE_FRIEND_FAILURE = 'DELETE_FRIEND_FAILURE';
+
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
@@ -54,13 +58,25 @@ export const addFriend = friend => dispatch => {
 };
 
 export const editFriend = friend => dispatch => {
-  dispatch({ type: ADD_FRIEND_REQUEST });
+  dispatch({ type: EDIT_FRIEND_REQUEST });
   return axiosAuth()
     .put(`http://localhost:5000/api/friends/${friend.id}`, friend)
     .then(res => {
-      dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data });
+      dispatch({ type: EDIT_FRIEND_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: ADD_FRIEND_FAILURE, payload: err.response.data });
+      dispatch({ type: EDIT_FRIEND_FAILURE, payload: err.response.data });
+    });
+};
+
+export const deleteFriend = id => dispatch => {
+  dispatch({ type: DELETE_FRIEND_REQUEST });
+  return axiosAuth()
+    .delete(`http://localhost:5000/api/friends/${id}`)
+    .then(res => {
+      dispatch({ type: DELETE_FRIEND_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_FRIEND_FAILURE, payload: err.response.data });
     });
 };

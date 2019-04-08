@@ -23,12 +23,6 @@ const AddFriendForm = ({ history, addFriend }) => {
       faveFood: faveFood.value,
       quotation: quotation.value
     }).then(() => {
-      name.setValue('');
-      age.setValue('');
-      email.setValue('');
-      faveColor.setValue('');
-      faveFood.setValue('');
-      quotation.setValue('');
       history.push('/');
     });
   };
